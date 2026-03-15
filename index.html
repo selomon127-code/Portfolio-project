@@ -3,158 +3,476 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solomon Yeneneh | Portfolio</title>
+  <title>Solomon Yeneneh | Creative Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">SY</div>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <div class="loading-text">Loading amazing portfolio...</div>
+    </div>
+  </div>
 
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+    <i class="fas fa-moon" id="theme-icon"></i>
+  </button>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <!-- Navigation -->
   <nav id="navbar">
-  <div class="container">
-    <h1 class="logo">Solomon</h1>
-
-   
-    <div class="menu-toggle" id="menu-toggle">
-      <i class="fa fa-bars"></i>
+    <div class="nav-container">
+      <a href="#hero" class="logo magnetic" data-text="SY">SY</a>
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero" class="magnetic">Home</a></li>
+        <li><a href="#about" class="magnetic">About</a></li>
+        <li><a href="#skills" class="magnetic">Skills</a></li>
+        <li><a href="#projects" class="magnetic">Projects</a></li>
+        <li><a href="#contact" class="magnetic">Contact</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#hero"><i class="fa fa-home"></i> Home</a></li>
-      <li><a href="#about"><i class="fa fa-user"></i> About</a></li>
-      <li><a href="#skills"><i class="fa fa-code"></i> Skills</a></li>
-      <li><a href="#projects"><i class="fa fa-briefcase"></i> Projects</a></li>
-      <li><a href="#contact"><i class="fa fa-envelope"></i> Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-  
-  <header id="hero">
-    <div class="container hero-content">
-      <img src="solimage.png" alt="Solomon Yeneneh" class="hero-image" />
+  <!-- Hero Section -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Available for Work</div>
       <div class="hero-text">
-        <h1>Solomon Yeneneh</h1>
-        <h2>Front-End Developer | Gondar University</h2>
-        <p>
-          I’m passionate about crafting responsive and elegant web experiences using HTML, CSS, JavaScript, and C++.
-          I enjoy solving problems and building intuitive digital solutions.
+        <h1 class="glitch" data-text="Solomon Yeneneh">Solomon Yeneneh</h1>
+        <div class="typewriter">
+          <span id="typewriter-text"></span><span class="cursor">|</span>
+        </div>
+        <p class="hero-description">
+          Crafting immersive digital experiences with code and creativity.
+          Transforming ideas into stunning interactive realities.
         </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary magnetic">
+            <span>View My Work</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#contact" class="btn btn-secondary magnetic">
+            <span>Let's Talk</span>
+          </a>
+        </div>
         <div class="social-links">
-            <a href="https://github.com/selomon127-code/selemon-proejects" class="git" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://www.facebook.com/profile.php?id=61572692944575" class="fec" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="https://t.me/soleee7" class="tel" target="_blank">  <i class="fab fa-telegram"></i></a>
+          <a href="https://github.com/selomon127-code/selemon-proejects" target="_blank" class="social-link magnetic">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61572692944575" target="_blank" class="social-link magnetic">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://t.me/soleee7" target="_blank" class="social-link magnetic">
+            <i class="fab fa-telegram"></i>
+          </a>
         </div>
-        <br> <br>
-        <a href="#contact" class="btn hire-btn">Hire Me</a>
+      </div>
+      <div class="hero-image-container">
+        <div class="hero-image-wrapper">
+          <img src="solimage.png" alt="Solomon Yeneneh" class="hero-image" loading="lazy" />
+          <div class="image-glow"></div>
+          <div class="floating-elements">
+            <div class="float-icon html"><i class="fab fa-html5"></i></div>
+            <div class="float-icon css"><i class="fab fa-css3-alt"></i></div>
+            <div class="float-icon js"><i class="fab fa-js"></i></div>
+            <div class="float-icon cpp"><i class="fas fa-code"></i></div>
+          </div>
+        </div>
       </div>
     </div>
-  </header>
-
-
-  <section id="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>
-        I’m Solomon, a Computer Science student at Gondar University, Ethiopia. I’m deeply interested in programming,
-        web development, and innovative problem-solving. My focus areas include frontend development, data structures,
-        and exploring machine learning fundamentals.
-      </p>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <span>Scroll to explore</span>
     </div>
   </section>
 
-
-  <section id="skills">
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="section-bg"></div>
     <div class="container">
-      <h2>My Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-card"><i class="fab fa-html5"></i><p>HTML</p></div>
-        <div class="skill-card"><i class="fab fa-css3-alt"></i><p>CSS</p></div>
-        <div class="skill-card"><i class="fab fa-js-square"></i><p>JavaScript</p></div>
-        <div class="skill-card"><i class="fab fa-java"></i><p>Java</p></div>
-        <div class="skill-card"><i class="fas fa-code"></i><p>C++</p></div>
+      <div class="section-header">
+        <span class="section-tag">About Me</span>
+        <h2 class="section-title">The Developer<br>Behind the Code</h2>
       </div>
-    </div>
-  </section>
-
-<section id="projects">
-  <h2>My Projects</h2>
-  <div class="project-list">
-    <div class="project-card">
-      <h3>Neon Snake</h3>
-      <p>Classic snake game with neon style and high-score tracking.</p>
-      <a href="game.html" target="_blank">Play Game</a>
-    </div>
-
-    <div class="project-card">
-      <h3>Jumping Ball</h3>
-      <p>Animated ball jumping game with obstacles and scoring.</p>
-      <a href="animation.html" target="_blank">Play Game</a>
-    </div>
-  </div>
-</section>
-
- 
- <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon" >
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3>Email</h3>
-                             <p><a class="eme" href="https://mail.google.com/mail/?view=cm&to=selomon127@gmail.com"
-                              target="_blank">selomon127@gmail.com</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h3>Phone</h3>
-                            <p>09 27 60 36 90</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h3>Location</h3>
-                            <p>Gondar University, Ethiopia</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" class="form-control" placeholder="Enter your message"></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
+      <div class="about-content">
+        <div class="about-image">
+          <div class="image-frame">
+            <div class="frame-line top"></div>
+            <div class="frame-line right"></div>
+            <div class="frame-line bottom"></div>
+            <div class="frame-line left"></div>
+            <img src="solimage.png" alt="About Solomon" loading="lazy" />
+          </div>
+          <div class="experience-badge">
+            <span class="years">3+</span>
+            <span class="text">Years<br>Learning</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <h3>Computer Science Student & Frontend Developer</h3>
+          <p>
+            I'm Solomon Yeneneh, a passionate Computer Science student at <strong>Gondar University, Ethiopia</strong>. 
+            My journey in tech began with curiosity and has evolved into a deep passion for creating 
+            beautiful, functional web experiences.
+          </p>
+          <p>
+            I specialize in frontend development, with a keen eye for design and user experience. 
+            My goal is to bridge the gap between aesthetics and functionality, delivering products 
+            that not only look stunning but work flawlessly.
+          </p>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-number" data-target="10">0</span>
+              <span class="stat-label">Projects</span>
             </div>
+            <div class="stat">
+              <span class="stat-number" data-target="5">0</span>
+              <span class="stat-label">Technologies</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" data-target="3">0</span>
+              <span class="stat-label">Years</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-outline magnetic">
+            <span>Download CV</span>
+            <i class="fas fa-download"></i>
+          </a>
         </div>
-    </section>
+      </div>
     </div>
+  </section>
 
+  <!-- Skills Section -->
+  <section id="skills" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Expertise</span>
+        <h2 class="section-title">Skills &<br>Technologies</h2>
+      </div>
+      <div class="skills-container">
+        <div class="skills-categories">
+          <div class="skill-category active" data-category="frontend">
+            <i class="fas fa-laptop-code"></i>
+            <span>Frontend</span>
+          </div>
+          <div class="skill-category" data-category="programming">
+            <i class="fas fa-code"></i>
+            <span>Programming</span>
+          </div>
+          <div class="skill-category" data-category="tools">
+            <i class="fas fa-tools"></i>
+            <span>Tools</span>
+          </div>
+        </div>
+        <div class="skills-display">
+          <div class="skills-grid active" id="frontend-skills">
+            <div class="skill-item" data-level="90">
+              <div class="skill-icon"><i class="fab fa-html5"></i></div>
+              <div class="skill-info">
+                <h4>HTML5</h4>
+                <div class="skill-progress">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <span class="skill-percent">90%</span>
+            </div>
+            <div class="skill-item" data-level="85">
+              <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+              <div class="skill-info">
+                <h4>CSS3</h4>
+                <div class="skill-progress">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <span class="skill-percent">85%</span>
+            </div>
+            <div class="skill-item" data-level="80">
+              <div class="skill-icon"><i class="fab fa-js"></i></div>
+              <div class="skill-info">
+                <h4>JavaScript</h4>
+                <div class="skill-progress">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <span class="skill-percent">80%</span>
+            </div>
+            <div class="skill-item" data-level="75">
+              <div class="skill-icon"><i class="fab fa-react"></i></div>
+              <div class="skill-info">
+                <h4>React Basics</h4>
+                <div class="skill-progress">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <span class="skill-percent">75%</span>
+            </div>
+          </div>
+          <div class="skills-grid" id="programming-skills">
+            <div class="skill-item" data-level="85">
+              <div class="skill-icon"><i class="fab fa-java"></i></div>
+              <div class="skill-info">
+                <h4>Java</h4>
+                <div class="skill-progress">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <span class="skill-percent">85%</span>
+            </div>
+            <div class="skill-item" data-level="80">
+              <div class="skill-icon"><i class="fas fa-code"></i></div>
+              <div class="skill-info">
+                <h4>C++</h4>
+                <div class="skill-progress">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <span class="skill-percent">80%</span>
+            </div>
+            <div class="skill-item" data-level="70">
+              <div class="skill-icon"><i class="fab fa-python"></i></div>
+              <div class="skill-info">
+                <h4>Python</h4>
+                <div class="skill-progress">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <span class="skill-percent">70%</span>
+            </div>
+          </div>
+          <div class="skills-grid" id="tools-skills">
+            <div class="skill-item" data-level="85">
+              <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+              <div class="skill-info">
+                <h4>Git & GitHub</h4>
+                <div class="skill-progress">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <span class="skill-percent">85%</span>
+            </div>
+            <div class="skill-item" data-level="80">
+              <div class="skill-icon"><i class="fas fa-terminal"></i></div>
+              <div class="skill-info">
+                <h4>Command Line</h4>
+                <div class="skill-progress">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <span class="skill-percent">80%</span>
+            </div>
+            <div class="skill-item" data-level="75">
+              <div class="skill-icon"><i class="fab fa-figma"></i></div>
+              <div class="skill-info">
+                <h4>Figma</h4>
+                <div class="skill-progress">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <span class="skill-percent">75%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Portfolio</span>
+        <h2 class="section-title">Featured<br>Projects</h2>
+      </div>
+      <div class="projects-showcase">
+        <div class="project-card featured" data-tilt>
+          <div class="project-image">
+            <div class="project-placeholder neon-snake">
+              <div class="neon-grid"></div>
+              <div class="snake-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+            </div>
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="game.html" target="_blank" class="project-link">
+                  <i class="fas fa-play"></i>
+                  <span>Play Now</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">Canvas API</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <h3>Neon Snake</h3>
+            <p>A visually stunning Snake game with neon aesthetics, smooth animations, and high-score tracking. Built with HTML5 Canvas and vanilla JavaScript.</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-tilt>
+          <div class="project-image">
+            <div class="project-placeholder jump-ball">
+              <div class="ball-animation">
+                <div class="ball"></div>
+                <div class="obstacles">
+                  <div class="obstacle"></div>
+                  <div class="obstacle"></div>
+                </div>
+              </div>
+            </div>
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="animation.html" target="_blank" class="project-link">
+                  <i class="fas fa-play"></i>
+                  <span>Play Now</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">CSS Animation</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <h3>Jumping Ball</h3>
+            <p>An addictive ball jumping game with physics-based animations, obstacles, and score tracking.</p>
+          </div>
+        </div>
+      </div>
+      <div class="projects-cta">
+        <a href="https://github.com/selomon127-code" target="_blank" class="btn btn-outline magnetic">
+          <span>View All Projects</span>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Contact</span>
+        <h2 class="section-title">Let's Create<br>Something Amazing</h2>
+      </div>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Get in Touch</h3>
+          <p>Have a project in mind or just want to say hello? I'm always open to discussing new opportunities and creative ideas.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-detail">
+                <span class="label">Email</span>
+                <a href="mailto:selomon127@gmail.com">selomon127@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-detail">
+                <span class="label">Phone</span>
+                <span>+251 927 603 690</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-detail">
+                <span class="label">Location</span>
+                <span>Gondar University, Ethiopia</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-social">
+            <a href="https://github.com/selomon127-code" target="_blank" class="social-link magnetic">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61572692944575" target="_blank" class="social-link magnetic">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://t.me/soleee7" target="_blank" class="social-link magnetic">
+              <i class="fab fa-telegram"></i>
+            </a>
+          </div>
+        </div>
+        <div class="contact-form-wrapper">
+          <form class="contact-form" id="contact-form">
+            <div class="form-group floating">
+              <input type="text" id="name" required placeholder=" ">
+              <label for="name">Your Name</label>
+            </div>
+            <div class="form-group floating">
+              <input type="email" id="email" required placeholder=" ">
+              <label for="email">Your Email</label>
+            </div>
+            <div class="form-group floating">
+              <textarea id="message" rows="4" required placeholder=" "></textarea>
+              <label for="message">Your Message</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full magnetic">
+              <span>Send Message</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>© 2025 Solomon Yeneneh | Gondar University | All Rights Reserved</p>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="logo">SY</span>
+          <p>Creating digital experiences that inspire and engage.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#hero" class="magnetic">Home</a>
+          <a href="#about" class="magnetic">About</a>
+          <a href="#skills" class="magnetic">Skills</a>
+          <a href="#projects" class="magnetic">Projects</a>
+          <a href="#contact" class="magnetic">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Solomon Yeneneh. Crafted with <i class="fas fa-heart"></i> in Ethiopia</p>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
